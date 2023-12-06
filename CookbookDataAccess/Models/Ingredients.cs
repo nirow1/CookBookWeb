@@ -2,18 +2,20 @@
 
 namespace CookbookDataAccess.Models
 {
-    public class CaloryTab
+    public class Ingredients
     {
         [Key]
         [Required]
         [MaxLength(50)]
-        public int TabId { get; set; }
+        public string? TabId { get; set; }
 
         [Required]
         [MaxLength(50)]
-        public int Kcal { get; set; }
+        public int Volume {  get; set; }
 
-        [Required]
+        [MaxLength(50)]
+        public float Calories { get; set; }
+
         [MaxLength(50)]
         public float Protein { get; set; }
     }

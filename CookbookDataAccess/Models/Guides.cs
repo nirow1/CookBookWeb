@@ -2,12 +2,12 @@
 
 namespace CookbookDataAccess.Models
 {
-    public class Guide
+    public class Guides
     {
         [Required]
         [MaxLength(50)]
         public int Id { get; set; }
-        public List<Ingredient>? Ingredients { get; set; } = new List<Ingredient>();
+        public List<IngredientTabs>? Ingredients { get; set; } = new List<IngredientTabs>();
 
         [Required]
         [MaxLength(500)]

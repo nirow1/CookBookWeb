@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CookbookDataAccess.Models
 {
-    public class Recipe
+    public class Recipes
     {
         [Required]
         [MaxLength(50)]
@@ -29,10 +29,6 @@ namespace CookbookDataAccess.Models
         [MaxLength(20)]
         public float Score { get; set; }
 
-        [Required]
-        [MaxLength(50)]
-        public int calories { get; set; }
-
-        public DateTime LastCooced { get; set; }
+        public DateTime LastCooked { get; set; }
     }
 }
