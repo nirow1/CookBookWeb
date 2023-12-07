@@ -29,6 +29,7 @@ namespace CookbookDataAccess.Models
         [MaxLength(20)]
         public float Score { get; set; }
 
+        [Required]
         public DateTime LastCooked { get; set; }
     }
 }

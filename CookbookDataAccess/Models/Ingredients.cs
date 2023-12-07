@@ -7,7 +7,7 @@ namespace CookbookDataAccess.Models
         [Key]
         [Required]
         [MaxLength(50)]
-        public string? TabId { get; set; }
+        public string? Name { get; set; }
 
         [Required]
         [MaxLength(50)]
