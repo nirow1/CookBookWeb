@@ -1,0 +1,18 @@
+[
+  {
+    "Id": 1,
+    "Name": "Dhal",
+    "Category": "Stew",
+    "Source": "https://www.albert.cz/recepty/cockovy-dhal",
+    "Score": 8.5,
+    "LastCooked": "3.10.2023"
+  },
+  {
+    "Id": 2,
+    "Name": "Chilli con carne",
+    "Category": "Stew",
+    "Source": "https://www.youtube.com/watch?v=ZT3GlECfYoU&t=96s",
+    "Score": 8.8,
+    "LastCooked": "5.12.2023"
+  }
+]

@@ -11,7 +11,7 @@ namespace CookbookDataAccess.Models
 
         [Required]
         [MaxLength(50)]
-        public int Volume {  get; set; }
+        public float Volume {  get; set; }
 
         [MaxLength(50)]
         public float Calories { get; set; }
