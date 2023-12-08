@@ -21,20 +21,26 @@ namespace CookBookWeb.Pages
         public void OnGet()
         {
             LoadSampleData();
+
         }
 
         public void LoadSampleData() 
         {
-            if (this.db.Recipes.Count() == 0) {
-                string file = System.IO.File.ReadAllText("Records/guides.json");
-                string file2 = System.IO.File.ReadAllText("Records/recipes.json");
+            if (this.db.IngredientTabs.Count() == 0) {
                 string file3 = System.IO.File.ReadAllText("Records/ingredients.json");
+                var ingredientTabs = JsonSerializer.Deserialize<List<IngredientTabs>>(file3);
 
-                var giudes = JsonSerializer.Deserialize < List<Guides>>(file);
+                db.AddRange(ingredientTabs);
+                db.SaveChanges();
+
+            }
+            if (this.db.Recipes.Count() == 0)
+            {
+                string file2 = System.IO.File.ReadAllText("Records/recipes.json");
                 var recipes = JsonSerializer.Deserialize<List<Recipes>>(file2);
-                var ingredients = JsonSerializer.Deserialize<List<Ingredients>>(file3);
 
-                db.AddRange(giudes, recipes, ingredients);
+
+                db.AddRange(recipes);
                 db.SaveChanges();
 
             }
