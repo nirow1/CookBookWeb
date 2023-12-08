@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using CookbookDataAccess.DataAccess;
+using CookbookLogic;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ builder.Services.AddDbContext<RecipeContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
 });
 builder.Services.AddRazorPages();
+builder.Services.AddTransient<FullRecipe>();
 
 var app = builder.Build();
 

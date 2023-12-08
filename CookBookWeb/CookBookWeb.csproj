@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CookbookDataAccess\CookbookDataAccess.csproj" />
+    <ProjectReference Include="..\CookbookLogic\CookbookLogic.csproj" />
   </ItemGroup>
 
 </Project>
