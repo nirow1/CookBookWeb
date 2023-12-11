@@ -11,10 +11,15 @@ namespace CookbookDataAccess.DataAccess
     public class RecipeContext : DbContext
     {
         public RecipeContext(DbContextOptions options) : base(options) { }
-
+        public RecipeContext() { }
         public DbSet<Recipes> Recipes { get; set; }
         public DbSet<Guides> Guides { get; set; }
         public DbSet<IngredientTabs> IngredientTabs { get; set; }
         public DbSet<Ingredients> Ingredients { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CookbookWebDB;Integrated Security=True;");
+        }
     }
 }
