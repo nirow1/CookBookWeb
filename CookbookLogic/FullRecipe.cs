@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Security.Cryptography.X509Certificates;
 using CookbookDataAccess.DataAccess;
+using CookbookDataAccess.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +23,8 @@ namespace CookbookLogic
 
         public int randomVal { get; private set; }
 
+        public Recipes fullRecipe {  get; private set; }
+
         public FullRecipe()
         {
             
@@ -30,6 +33,11 @@ namespace CookbookLogic
                 context.Database.EnsureCreated();
                 var recipe = context.Recipes.Single(r=> r.Name == "Chilli con carne");
                 Name = recipe.Name;
+                fullRecipe.Name = recipe.Name;
+                fullRecipe.Score = recipe.Score;
+                fullRecipe.Source = recipe.Source;
+                fullRecipe.LastCooked = recipe.LastCooked;
+                fullRecipe.Category = recipe.Category;
             }
 
             randomVal = Random.Shared.Next(1,100);
