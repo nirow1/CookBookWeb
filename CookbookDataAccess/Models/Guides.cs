@@ -7,7 +7,7 @@ namespace CookbookDataAccess.Models
         [Required]
         [MaxLength(50)]
         public int Id { get; set; }
-        public List<IngredientTabs>? Ingredients { get; set; } = new List<IngredientTabs>();
+        public List<Ingredients>? Ingredients { get; set; } = new List<Ingredients>();
 
         [Required]
         [MaxLength(500)]
@@ -18,5 +18,8 @@ namespace CookbookDataAccess.Models
 
         [MaxLength(50)]
         public float TotalProtein { get; set; }
+
+        [MaxLength(50)]
+        public float TotalGrams { get; set; }
     }
 }
