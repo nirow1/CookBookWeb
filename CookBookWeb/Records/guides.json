@@ -1,6 +1,5 @@
 [
   {
-    "Id": 1,
     "Ingredients": [
       {
         "Name": "cibule",
@@ -47,7 +46,7 @@
         "Volume": 250
       },
       {
-        "Name": "čočka červená",
+        "Name": "červená čočka",
         "Volume": 250
       },
       {
@@ -58,14 +57,13 @@
     "WritenGuide": "rozehřát troubu 210c => cibule 2min => česnek, zazvor, koření 2min => rajčata, kokosové mléko, voda, čočka 15min. Zároveň upéct kuře => vhodit kuře a dalších 15min"
   },
   {
-    "Id": 2,
     "Ingredients": [
       {
         "Name": "olivový olej",
         "Volume": 40
       },
       {
-        "Name": "mleté(vepřové)",
+        "Name": "mleté vepřové",
         "Volume": 1000
       },
       {
