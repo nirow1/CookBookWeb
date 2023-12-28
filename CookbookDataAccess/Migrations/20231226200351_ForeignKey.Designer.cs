@@ -4,6 +4,7 @@ using CookbookDataAccess.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CookbookDataAccess.Migrations
 {
     [DbContext(typeof(RecipeContext))]
-    partial class RecipeContextModelSnapshot : ModelSnapshot
+    [Migration("20231226200351_ForeignKey")]
+    partial class ForeignKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,11 +58,9 @@ namespace CookbookDataAccess.Migrations
 
             modelBuilder.Entity("CookbookDataAccess.Models.IngredientTabs", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Name")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("Kcal")
                         .HasMaxLength(50)
@@ -70,27 +71,20 @@ namespace CookbookDataAccess.Migrations
                         .HasMaxLength(5)
                         .HasColumnType("nvarchar(5)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<float>("Protein")
                         .HasMaxLength(50)
                         .HasColumnType("real");
 
-                    b.HasKey("Id");
+                    b.HasKey("Name");
 
                     b.ToTable("IngredientTabs");
                 });
 
             modelBuilder.Entity("CookbookDataAccess.Models.Ingredients", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Name")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<float>("Calories")
                         .HasMaxLength(50)
@@ -98,11 +92,6 @@ namespace CookbookDataAccess.Migrations
 
                     b.Property<int?>("GuidesId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
 
                     b.Property<float>("Protein")
                         .HasMaxLength(50)
@@ -112,7 +101,7 @@ namespace CookbookDataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("real");
 
-                    b.HasKey("Id");
+                    b.HasKey("Name");
 
                     b.HasIndex("GuidesId");
 

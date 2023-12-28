@@ -18,10 +18,21 @@ namespace CookbookLogic
 
                 foreach (var guide in context.Guides)
                 {
-                    foreach(var ing in guide.Ingredients)
+                    var ingrediant = from ing in guide.Ingredients
+                                        join tab in context.IngredientTabs
+                                        on ing.Name equals tab.Name
+                                        select new
+                                        {
+                                            name = ing.Name,
+                                            Protein = ing.Volume * tab.Protein,
+                                            Calories = ing.Volume * tab.Kcal
+                                        };
+                    /*foreach(var ing in guide.Ingredients)
                     {
-                        if(ing.Protein == null) { }
-                    }
+                        if (ing.Protein == 0)
+                        {
+                        }
+                    }*/
                 }
             }
         }

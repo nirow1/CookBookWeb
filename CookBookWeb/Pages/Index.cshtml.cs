@@ -1,7 +1,9 @@
 using CookbookDataAccess.DataAccess;
 using CookbookDataAccess.Models;
+using CookbookLogic;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
+
 
 namespace CookBookWeb.Pages
 {
@@ -19,14 +21,15 @@ namespace CookBookWeb.Pages
         public void OnGet()
         {
             LoadSampleData();
-
+            //DBUpdates updates = new DBUpdates();
+            //updates.GetNutritionalValues();
         }
 
         public void LoadSampleData() 
         {
             if (this.db.IngredientTabs.Count() == 0) {
-                string file3 = System.IO.File.ReadAllText("Records/ingredients.json");
-                var ingredientTabs = JsonSerializer.Deserialize<List<IngredientTabs>>(file3);
+                string file = System.IO.File.ReadAllText("Records/ingredients.json");
+                var ingredientTabs = JsonSerializer.Deserialize<List<IngredientTabs>>(file);
 
                 db.AddRange(ingredientTabs);
                 db.SaveChanges();
@@ -34,11 +37,21 @@ namespace CookBookWeb.Pages
             }
             if (this.db.Recipes.Count() == 0)
             {
-                string file2 = System.IO.File.ReadAllText("Records/recipes.json");
-                var recipes = JsonSerializer.Deserialize<List<Recipes>>(file2);
+                string file = System.IO.File.ReadAllText("Records/recipes.json");
+                var recipes = JsonSerializer.Deserialize<List<Recipes>>(file);
 
 
                 db.AddRange(recipes);
+                db.SaveChanges();
+
+            }
+            if (this.db.Guides.Count() == 0)
+            {
+                string file = System.IO.File.ReadAllText("Records/guides.json");
+                var guides = JsonSerializer.Deserialize<List<Guides>>(file);
+
+
+                db.AddRange(guides);
                 db.SaveChanges();
 
             }

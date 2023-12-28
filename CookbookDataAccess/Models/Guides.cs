@@ -7,6 +7,8 @@ namespace CookbookDataAccess.Models
         [Required]
         [MaxLength(50)]
         public int Id { get; set; }
+
+        [Required]
         public List<Ingredients>? Ingredients { get; set; } = new List<Ingredients>();
 
         [Required]

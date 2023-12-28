@@ -17,13 +17,14 @@ namespace CookbookLogic
     {
         public string? Name { get; private set; }
 
-        public string? score { get; private set; }
+        public string? Score { get; private set; }
 
-        public string? source { get; private set; }
+        public string? Source { get; private set; }
 
         public int randomVal { get; private set; }
 
         public Recipes fullRecipe {  get; private set; }
+        public Guides guide {  get; private set; }
 
         public FullRecipe()
         {
@@ -32,7 +33,9 @@ namespace CookbookLogic
             {
                 context.Database.EnsureCreated();
                 var recipe = context.Recipes.Single(r=> r.Name == "Chilli con carne");
-                Name = recipe.Name;
+                fullRecipe = recipe;
+                guide = context.Guides.Single(g => g.Id == recipe.Id);
+
                 fullRecipe.Name = recipe.Name;
                 fullRecipe.Score = recipe.Score;
                 fullRecipe.Source = recipe.Source;
