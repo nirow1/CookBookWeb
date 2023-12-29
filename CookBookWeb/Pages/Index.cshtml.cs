@@ -21,8 +21,6 @@ namespace CookBookWeb.Pages
         public void OnGet()
         {
             LoadSampleData();
-            //DBUpdates updates = new DBUpdates();
-            //updates.GetNutritionalValues();
         }
 
         public void LoadSampleData() 
@@ -55,6 +53,8 @@ namespace CookBookWeb.Pages
                 db.SaveChanges();
 
             }
+            DBUpdates.GetNutritionalValues();
+            //updates.GetNutritionalValues();
         }
     }
 }

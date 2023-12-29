@@ -11,7 +11,6 @@ builder.Services.AddDbContext<RecipeContext>(options =>
 });
 builder.Services.AddRazorPages();
 builder.Services.AddTransient<FullRecipe>();
-builder.Services.AddTransient<DBUpdates>();
 
 var app = builder.Build();
 
