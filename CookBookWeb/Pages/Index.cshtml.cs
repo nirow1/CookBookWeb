@@ -53,8 +53,7 @@ namespace CookBookWeb.Pages
                 db.SaveChanges();
 
             }
-            DBUpdates.GetNutritionalValues();
-            //updates.GetNutritionalValues();
+            DbUpdates.GetNutritionalValues();
         }
     }
 }
