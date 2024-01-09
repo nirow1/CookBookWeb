@@ -1,0 +1,128 @@
+[
+  {
+    "Name": "kuře",
+    "Measurement": "g",
+    "Kcal": 106,
+    "Protein": 23.1
+  },
+  {
+    "Name": "kuřecí stehna",
+    "Measurement": "g",
+    "Kcal": 107,
+    "Protein": 20.1
+  },
+  {
+    "Name": "vejce",
+    "Measurement": "ks",
+    "Kcal": 83,
+    "Protein": 6.81
+  },
+  {
+    "Name": "rýže",
+    "Measurement": "g",
+    "Kcal": 353,
+    "Protein": 7
+  },
+  {
+    "Name": "špagety",
+    "Measurement": "g",
+    "Kcal": 354,
+    "Protein": 13
+  },
+  {
+    "Name": "mleté vepřové",
+    "Measurement": "g",
+    "Kcal": 262,
+    "Protein": 18.9
+  },
+  {
+    "Name": "mleté hovězí",
+    "Measurement": "g",
+    "Kcal": 221,
+    "Protein": 17
+  },
+  {
+    "Name": "červená čočka",
+    "Measurement": "g",
+    "Kcal": 301,
+    "Protein": 26
+  },
+  {
+    "Name": "zakysaná smetana",
+    "Measurement": "g",
+    "Kcal": 134,
+    "Protein": 3.1
+  },
+  {
+    "Name": "podmáslí",
+    "Measurement": "g",
+    "Kcal": 41,
+    "Protein": 3.3
+  },
+  {
+    "Name": "olej",
+    "Measurement": "g",
+    "Kcal": 897,
+    "Protein": 0.1
+  },
+  {
+    "Name": "máslo",
+    "Measurement": "g",
+    "Kcal": 748,
+    "Protein": 0
+  },
+  {
+    "Name": "olivový olej",
+    "Measurement": "g",
+    "Kcal": 824,
+    "Protein": 0
+  },
+  {
+    "Name": "červené fazole",
+    "Measurement": "ks",
+    "Kcal": 455,
+    "Protein": 34.44
+  },
+  {
+    "Name": "bílé fazole",
+    "Measurement": "ks",
+    "Kcal": 405,
+    "Protein": 26.8
+  },
+  {
+    "Name": "protlak",
+    "Measurement": "g",
+    "Kcal": 114,
+    "Protein": 2.45
+  },
+  {
+    "Name": "brambory",
+    "Measurement": "g",
+    "Kcal": 88,
+    "Protein": 2
+  },
+  {
+    "Name": "strouhanka",
+    "Measurement": "g",
+    "Kcal": 360,
+    "Protein": 9.72
+  },
+  {
+    "Name": "mléko",
+    "Measurement": "g",
+    "Kcal": 64,
+    "Protein": 3.22
+  },
+  {
+    "Name": "řecký jogurt",
+    "Measurement": "g",
+    "Kcal": 95,
+    "Protein": 8.4
+  },
+  {
+    "Name": "kolínka",
+    "Measurement": "g",
+    "Kcal": 362,
+    "Protein": 11
+  }
+]

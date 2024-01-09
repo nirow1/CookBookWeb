@@ -1,0 +1,113 @@
+[
+  {
+    "Ingredients": [
+      {
+        "Name": "cibule",
+        "Volume": 1
+      },
+      {
+        "Name": "česnek",
+        "Volume": 2
+      },
+      {
+        "Name": "zázvor",
+        "Volume": 10
+      },
+      {
+        "Name": "bobkový list",
+        "Volume": 2
+      },
+      {
+        "Name": "kari",
+        "Volume": 1
+      },
+      {
+        "Name": "paprička",
+        "Volume": 1
+      },
+      {
+        "Name": "koriandr",
+        "Volume": 0.5
+      },
+      {
+        "Name": "kmín",
+        "Volume": 1
+      },
+      {
+        "Name": "rajčata krájená",
+        "Volume": 2
+      },
+      {
+        "Name": "kokosové mléko",
+        "Volume": 1
+      },
+      {
+        "Name": "voda",
+        "Volume": 250
+      },
+      {
+        "Name": "červená čočka",
+        "Volume": 250
+      },
+      {
+        "Name": "kuře",
+        "Volume": 900
+      }
+    ],
+    "WritenGuide": "rozehřát troubu 210c => cibule 2min => česnek, zazvor, koření 2min => rajčata, kokosové mléko, voda, čočka 15min. Zároveň upéct kuře => vhodit kuře a dalších 15min"
+  },
+  {
+    "Ingredients": [
+      {
+        "Name": "olivový olej",
+        "Volume": 40
+      },
+      {
+        "Name": "mleté vepřové",
+        "Volume": 1000
+      },
+      {
+        "Name": "cibule",
+        "Volume": 1
+      },
+      {
+        "Name": "česnek",
+        "Volume": 3
+      },
+      {
+        "Name": "protlak",
+        "Volume": 10
+      },
+      {
+        "Name": "chilli",
+        "Volume": 1
+      },
+      {
+        "Name": "kmín",
+        "Volume": 1.5
+      },
+      {
+        "Name": "rajčata krájená",
+        "Volume": 2
+      },
+      {
+        "Name": "hovězí vývar",
+        "Volume": 240
+      },
+      {
+        "Name": "červené fazole",
+        "Volume": 1
+      },
+      {
+        "Name": "rýže",
+        "Volume": 480
+      },
+      {
+        "Name": "rýže",
+        "Volume": 20
+      }
+    ],
+    "WritenGuide": "osmažit mleté => přidat cibuli 2m => česnek 2m => koření + protlak a orestovat => přidat plechovky rajčat, čokoládu a fazole => zalít vývarem a povařit 20m"
+  }
+   
+]
