@@ -3,9 +3,6 @@ using CookbookDataAccess.DataAccess;
 using CookbookDataAccess.Models;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Web;
-//using System.Web.Mvc;
-//using System.Web.Mvc.Ajax;
-//using Microsoft.AspNetCore.Mvc;
 
 
 namespace CookbookLogic
