@@ -16,9 +16,7 @@ namespace CookbookUI.Controllers
         public IActionResult Index()
         {
             var data = from rec in context.Recipes
-                       join gui in context.Guides
-                       on rec.Id equals gui.Id into guideGroup
-                       select new {Id = rec.Id, Name = rec.Name, Score = rec.Score, Category = rec.Category, LastCooked = rec.LastCooked,  GuideList =guideGroup.ToList()};
+                       select new {Id = rec.Id, Name = rec.Name, Score = rec.Score, Category = rec.Category, LastCooked = rec.LastCooked};
 
             return View(data.ToList());
         }
@@ -30,14 +28,18 @@ namespace CookbookUI.Controllers
                 return NotFound();
             }
 
-            var recipes = await context.Recipes
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (recipes == null)
+            var recipes = from rec in context.Recipes
+                          join gui in context.Guides
+                          on rec.Id equals gui.Id into guideGroup
+                          select new { Id = rec.Id, Name = rec.Name, Source = rec.Source, Score = rec.Score, Category = rec.Category, LastCooked = rec.LastCooked, Guides = guideGroup.ToList()};
+            var fullRecipe = await recipes.FirstOrDefaultAsync(m => m.Id == id);
+            
+            if (fullRecipe == null)
             {
                 return NotFound();
             }
 
-            return View(recipes);
+            return View(fullRecipe);
         }
     }
 }

@@ -1,47 +1,41 @@
-﻿@model CookbookDataAccess.Models.Recipes
+﻿@model dynamic
 
-@{
-    ViewData["Title"] = "Details";
-}
+<h1>Recipe Details</h1>
 
-<h1>Details</h1>
+<table>
+    <tr>
+        <td>Name:</td>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <td>Source:</td>
+        <td>@Model.Source</td>
+    </tr>
+    <tr>
+        <td>Score:</td>
+        <td>@Model.Score</td>
+    </tr>
+    <tr>
+        <td>Category:</td>
+        <td>@Model.Category</td>
+    </tr>
+    <tr>
+        <td>Last Cooked:</td>
+        <td>@Model.LastCooked</td>
+    </tr>
+    <tr>
+        <td>Guides:</td>
+        <td>
+            <ul>
+                @foreach (var guide in Model.GuideList)
+                {
+                    <li>@guide.TotalProtein</li>
+                }
+            </ul>
+        </td>
+    </tr>
+</table>
 
-<div>
-    <h4>Recipes</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Source)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Source)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Score)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Score)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastCooked)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LastCooked)
-        </dd>
-    </dl>
-</div>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
