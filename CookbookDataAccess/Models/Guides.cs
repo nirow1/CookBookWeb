@@ -9,6 +9,16 @@ namespace CookbookDataAccess.Models
         public int Id { get; set; }
 
         [Required]
+        [MaxLength(50)]
+        public int RecipeId { get; set; }
+
+        [MaxLength(50)]
+        public string? Type { get; set; }
+
+        [MaxLength(50)]
+        public float Score { get; set; }
+
+        [Required]
         public List<Ingredients>? Ingredients { get; set; } = new List<Ingredients>();
 
         [Required]

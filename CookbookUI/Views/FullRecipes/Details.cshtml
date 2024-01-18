@@ -23,13 +23,23 @@
         <td>Last Cooked:</td>
         <td>@Model.LastCooked</td>
     </tr>
+    <tr>Guides:</tr>
+    
     <tr>
         <td>Guides:</td>
         <td>
             <ul>
-                @foreach (var guide in Model.GuideList)
+                @foreach (var guide in Model.Guides)
                 {
-                    <li>@guide.TotalProtein</li>
+                    <il>WrittenGuide:</il>
+                    <il>@guide.WritenGuide</il>
+
+                    <il>Total Calories:</il>
+                    <il>@guide.TotalCalories</il>
+                    @foreach (var ing in guide.Ingredients)
+                    {
+                        <il>@ing.Name</il>
+                    }
                 }
             </ul>
         </td>

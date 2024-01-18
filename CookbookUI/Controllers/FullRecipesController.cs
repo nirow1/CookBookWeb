@@ -1,4 +1,5 @@
 ﻿using CookbookDataAccess.DataAccess;
+using CookbookDataAccess.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,11 +28,11 @@ namespace CookbookUI.Controllers
             {
                 return NotFound();
             }
-
+            var guides = context.Guides.Include(g => g.Ingredients).ToList();
             var recipes = from rec in context.Recipes
-                          join gui in context.Guides
+                          join gui in context.Guides.Include(g => g.Ingredients)
                           on rec.Id equals gui.Id into guideGroup
-                          select new { Id = rec.Id, Name = rec.Name, Source = rec.Source, Score = rec.Score, Category = rec.Category, LastCooked = rec.LastCooked, Guides = guideGroup.ToList()};
+                          select new { Id = rec.Id, Name = rec.Name, Source = rec.Source, Score = rec.Score, Category = rec.Category, LastCooked = rec.LastCooked, Guides= guideGroup.ToList()};
             var fullRecipe = await recipes.FirstOrDefaultAsync(m => m.Id == id);
             
             if (fullRecipe == null)
