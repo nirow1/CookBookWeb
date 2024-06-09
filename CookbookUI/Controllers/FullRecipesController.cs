@@ -28,7 +28,6 @@ namespace CookbookUI.Controllers
             {
                 return NotFound();
             }
-            var guides = context.Guides.Include(g => g.Ingredients).ToList();
             var recipes = from rec in context.Recipes
                           join gui in context.Guides.Include(g => g.Ingredients)
                           on rec.Id equals gui.Id into guideGroup

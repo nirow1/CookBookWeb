@@ -6,7 +6,7 @@ namespace CookbookDataAccess.Models
 {
     public class Ingredients
     {
-        public int Id {  get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(50)]
@@ -21,5 +21,9 @@ namespace CookbookDataAccess.Models
 
         [MaxLength(50)]
         public float Protein { get; set; }
+
+        public IngredientTabs? IngredientTabs { get; set; }
+
+        public ICollection<Guides> Guides { get; set; } = new List<Guides>();
     }
 }

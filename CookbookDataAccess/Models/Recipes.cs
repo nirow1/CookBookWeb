@@ -31,5 +31,7 @@ namespace CookbookDataAccess.Models
 
         [Required]
         public DateTime LastCooked { get; set; }
+
+        public virtual ICollection<Guides> Guides { get; set; } = new List<Guides>();
     }
 }

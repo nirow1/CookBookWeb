@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CookbookDataAccess.Models
 {
@@ -8,8 +9,7 @@ namespace CookbookDataAccess.Models
         [MaxLength(50)]
         public int Id { get; set; }
 
-        [Required]
-        [MaxLength(50)]
+        [ForeignKey(nameof(Recipes))]
         public int RecipeId { get; set; }
 
         [MaxLength(50)]
@@ -17,9 +17,6 @@ namespace CookbookDataAccess.Models
 
         [MaxLength(50)]
         public float Score { get; set; }
-
-        [Required]
-        public List<Ingredients>? Ingredients { get; set; } = new List<Ingredients>();
 
         [Required]
         [MaxLength(500)]
@@ -33,5 +30,9 @@ namespace CookbookDataAccess.Models
 
         [MaxLength(50)]
         public float TotalGrams { get; set; }
+
+        public virtual Recipes Recipes { get; set; } = null!;
+
+        public ICollection<Ingredients> Ingredients { get; set; } = new List<Ingredients>();
     }
 }
