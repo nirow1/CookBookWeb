@@ -7,40 +7,42 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CookbookDataAccess.DataAccess;
 using CookbookDataAccess.Models;
+using CookbookLogic.Services;
 
 namespace CookbookUI.Controllers
 {
     public class RecipesController : Controller
     {
-        private readonly RecipeContext _context;
+        private readonly RecipesService _recipesService;
 
-        public RecipesController(RecipeContext context)
+        public RecipesController(RecipesService recipesService)
         {
-            _context = context;
+            _recipesService = recipesService;
         }
 
         // GET: Recipes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Recipes.ToListAsync());
+            var recipes = await _recipesService.GetAllRecipes();
+            return View(recipes);
         }
 
         // GET: Recipes/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
+                var recipe = await _recipesService.GetRecipeById(id);
+                return View(recipe);
             }
-
-            var recipes = await _context.Recipes
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (recipes == null)
+            catch (KeyNotFoundException ex)
             {
-                return NotFound();
+                return NotFound(ex);
             }
-
-            return View(recipes);
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
         }
 
         // GET: Recipes/Create
