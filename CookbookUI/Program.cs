@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using CookbookDataAccess.DataAccess;
 using CookbookLogic;
+using CookbookLogic.Services;
+using CookbookDataAccess.Persistence;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +13,8 @@ builder.Services.AddDbContext<RecipeContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
 });
-builder.Services.AddTransient<FullRecipesController>();
+builder.Services.AddTransient<RecipesService>();
+builder.Services.AddScoped<RecipesRepository>();
 
 var app = builder.Build();
 

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CookbookDataAccess.DataAccess;
 using CookbookDataAccess.Models;
 using CookbookLogic.Services;
+using CookbookLogic.Dto;
 
 namespace CookbookUI.Controllers
 {
@@ -56,31 +57,40 @@ namespace CookbookUI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Category,Source,Score,LastCooked")] Recipes recipes)
+        public async Task<IActionResult> Create([Bind("Id,Name,Category,Source,Score,LastCooked")] RecipeDto recipes)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(recipes);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    await _recipesService.CreateRecipe(recipes);
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(500, ex);
+                }
             }
+
             return View(recipes);
         }
 
         // GET: Recipes/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
+                var recipe = await _recipesService.GetRecipeById(id);
+                return View(recipe);
             }
-
-            var recipes = await _context.Recipes.FindAsync(id);
-            if (recipes == null)
+            catch (KeyNotFoundException ex)
             {
-                return NotFound();
+                return NotFound(ex);
             }
-            return View(recipes);
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
         }
 
         // POST: Recipes/Edit/5
@@ -88,52 +98,43 @@ namespace CookbookUI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Category,Source,Score,LastCooked")] Recipes recipes)
+        public async Task<IActionResult> Edit([Bind("Id,Name,Category,Source,Score,LastCooked")] RecipeDto recipe)
         {
-            if (id != recipes.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(recipes);
-                    await _context.SaveChangesAsync();
+                    await _recipesService.UpdateRecipe(recipe);
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (KeyNotFoundException ex)
                 {
-                    if (!RecipesExists(recipes.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    return NotFound(ex);
                 }
-                return RedirectToAction(nameof(Index));
+                catch (Exception ex)
+                {
+                    return StatusCode(500, ex);
+                }
             }
-            return View(recipes);
+            return View(recipe);
         }
 
         // GET: Recipes/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
+                var recipe = await _recipesService.GetRecipeById(id);
+                return View(recipe);
             }
-
-            var recipes = await _context.Recipes
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (recipes == null)
+            catch (KeyNotFoundException ex)
             {
-                return NotFound();
+                return NotFound(ex);
             }
-
-            return View(recipes);
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
         }
 
         // POST: Recipes/Delete/5
@@ -141,19 +142,12 @@ namespace CookbookUI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var recipes = await _context.Recipes.FindAsync(id);
-            if (recipes != null)
-            {
-                _context.Recipes.Remove(recipes);
-            }
+            var deleted = await _recipesService.DeleteRecipe(id);
 
-            await _context.SaveChangesAsync();
+            if (!deleted)
+                return Conflict(deleted);
+
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool RecipesExists(int id)
-        {
-            return _context.Recipes.Any(e => e.Id == id);
         }
     }
 }
