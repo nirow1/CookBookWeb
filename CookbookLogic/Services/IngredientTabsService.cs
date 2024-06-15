@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CookbookLogic.Services
 {
-    internal class FullRecipeService
+    internal class IngredientTabsService
     {
     }
 }

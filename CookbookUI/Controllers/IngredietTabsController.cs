@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CookbookUI.Controllers
 {
-    public class FullRecipesController : Controller
+    public class IngredientTabsController : Controller
     {
 
         private readonly RecipeContext context;
 
-        public FullRecipesController(RecipeContext context)
+        public IngredientTabsController(RecipeContext context)
         {
             this.context = context;
         }
@@ -41,5 +41,7 @@ namespace CookbookUI.Controllers
 
             return View(fullRecipe);
         }
+
+
     }
 }
