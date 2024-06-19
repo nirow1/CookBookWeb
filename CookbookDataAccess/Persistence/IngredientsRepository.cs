@@ -4,15 +4,43 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CookbookDataAccess.Persistence
 {
-    public class IngredientsRepository : BaseRepository
+    public class IngredientTabsRepository : BaseRepository
     {
-        public IngredientsRepository(RecipeContext recipeContext) : base(recipeContext)
+        public IngredientTabsRepository(RecipeContext recipeContext) : base(recipeContext) { }
+
+        public async Task<IEnumerable<IngredientTabs>> GetIngredientTabs()
         {
+            return await Context.IngredientTabs.ToListAsync();
         }
 
-        public async Task<IEnumerable<Ingredients>> GetIngredients()
+        public async Task CreateIngredientTab(IngredientTabs ingredientTab)
         {
-            return await Context.Ingredients.ToListAsync();
+            using var transaction = await Context.Database.BeginTransactionAsync();
+            await Context.IngredientTabs.AddAsync(ingredientTab);
+            await Context.SaveChangesAsync();
+            await transaction.CommitAsync();
+        }
+
+        public async Task UpdateIngredientTab(IngredientTabs ingredientTab)
+        {
+            using var transaction = await Context.Database.BeginTransactionAsync();
+            Context.IngredientTabs.Update(ingredientTab);
+            await Context.SaveChangesAsync();
+            await transaction.CommitAsync();
+        }
+
+        public async Task<bool> DeleteRecipe(int id)
+        {
+            using var transaction = await Context.Database.BeginTransactionAsync();
+            var ingredientTab = Context.Recipes.FirstOrDefault(r => r.Id == id);
+
+            if (ingredientTab is null)
+                return false;
+
+            Context.Recipes.Remove(ingredientTab);
+            await Context.SaveChangesAsync();
+            await transaction.CommitAsync();
+            return true;
         }
     }
 }

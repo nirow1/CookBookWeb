@@ -1,5 +1,7 @@
 ﻿using CookbookDataAccess.DataAccess;
 using CookbookDataAccess.Models;
+using CookbookLogic.Dto;
+using CookbookLogic.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,11 +10,11 @@ namespace CookbookUI.Controllers
     public class IngredientTabsController : Controller
     {
 
-        private readonly RecipeContext context;
+        private readonly IngredientTabsService _ingredientTabsService;
 
-        public IngredientTabsController(RecipeContext context)
+        public IngredientTabsController(IngredientTabsService ingredientTabsService)
         {
-            this.context = context;
+            _ingredientsTabsService = ingredientTabsService;
         }
         public IActionResult Index()
         {
@@ -42,6 +44,30 @@ namespace CookbookUI.Controllers
             return View(fullRecipe);
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,Name,Category,Source,Score,LastCooked")] RecipeDto recipes)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await _recipesService.CreateRecipe(recipes);
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(500, ex);
+                }
+            }
+
+            return View(recipes);
+        }
 
     }
 }
