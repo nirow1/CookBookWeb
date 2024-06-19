@@ -1,8 +1,6 @@
-﻿using CookbookDataAccess.DataAccess;
-using CookbookDataAccess.Models;
-using CookbookLogic.Dto;
-using CookbookLogic.Services;
+﻿using CookbookLogic.Dto;
 using Microsoft.AspNetCore.Mvc;
+using CookbookLogic.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace CookbookUI.Controllers
@@ -14,50 +12,42 @@ namespace CookbookUI.Controllers
 
         public IngredientTabsController(IngredientTabsService ingredientTabsService)
         {
-            _ingredientsTabsService = ingredientTabsService;
+            _ingredientTabsService = ingredientTabsService;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var data = from rec in context.Recipes
-                       select new {Id = rec.Id, Name = rec.Name, Score = rec.Score, Category = rec.Category, LastCooked = rec.LastCooked};
-
-            return View(data.ToList());
+            var recipes = await _ingredientTabsService.GetAllTabs();
+            return View(recipes);
         }
 
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
+                var recipe = await _ingredientTabsService.ge(id);
+                return View(recipe);
             }
-            var recipes = from rec in context.Recipes
-                          join gui in context.Guides.Include(g => g.Ingredients)
-                          on rec.Id equals gui.Id into guideGroup
-                          select new { Id = rec.Id, Name = rec.Name, Source = rec.Source, Score = rec.Score, Category = rec.Category, LastCooked = rec.LastCooked, Guides= guideGroup.ToList()};
-            var fullRecipe = await recipes.FirstOrDefaultAsync(m => m.Id == id);
-            
-            if (fullRecipe == null)
+            catch (KeyNotFoundException ex)
             {
-                return NotFound();
+                return NotFound(ex);
             }
-
-            return View(fullRecipe);
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
         }
 
-        public IActionResult Create()
-        {
-            return View();
-        }
+        public IActionResult Create() => View();
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Category,Source,Score,LastCooked")] RecipeDto recipes)
+        public async Task<IActionResult> Create([Bind("Id,Name,Category,Source,Score,LastCooked")] IngredientTabsDto ingredientTab)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    await _recipesService.CreateRecipe(recipes);
+                    await _ingredientTabsService.CreateTab(ingredientTab);
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
@@ -66,7 +56,7 @@ namespace CookbookUI.Controllers
                 }
             }
 
-            return View(recipes);
+            return View(ingredientTab);
         }
 
     }

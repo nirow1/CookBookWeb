@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CookbookLogic.Services
 {
-    class IngredientTabsService
+    public class IngredientTabsService
     {
         private readonly IngredientTabsRepository _ingredientTabsRepository;
 
@@ -19,12 +19,12 @@ namespace CookbookLogic.Services
             _ingredientTabsRepository = ingredientTabsRepository;
         }
 
-        public async Task<IEnumerable<IngredientTabsDto>> GetAllRecipes()
+        public async Task<IEnumerable<IngredientTabsDto>> GetAllTabs()
         {
             return (await _ingredientTabsRepository.GetIngredientTabs()).Select(r => new IngredientTabsDto(r));
         }
 
-        public async Task CreateRecipe(IngredientTabsDto ingredientTab)
+        public async Task CreateTab(IngredientTabsDto ingredientTab)
         {
             var newIngredientTab = new IngredientTabs
             {
@@ -35,12 +35,12 @@ namespace CookbookLogic.Services
                 Id = ingredientTab.Id,
             };
 
-            await _ingredientTabsRepository.CreateIngredientTab(newIngredientTab);
+            await _ingredientTabsRepository.CreateTab(newIngredientTab);
         }
 
-        public async Task UpdateRecipe(IngredientTabsDto ingredientTab)
+        public async Task UpdateTab(IngredientTabsDto ingredientTab)
         {
-            var existingingredientTab = await _ingredientTabsRepository.GetRecipeById(ingredientTab.Id) ?? throw new KeyNotFoundException("Recipe not found");
+            var existingingredientTab = await _ingredientTabsRepository.GetTabById(ingredientTab.Id) ?? throw new KeyNotFoundException("Recipe not found");
 
             existingingredientTab.Name = ingredientTab.Name;
             existingingredientTab.Measurement = ingredientTab.Measurement;
@@ -48,12 +48,12 @@ namespace CookbookLogic.Services
             existingingredientTab.Protein = ingredientTab.Protein;
             existingingredientTab.Id = ingredientTab.Id;
 
-            await _ingredientTabsRepository.UpdateIngredientTab(existingingredientTab);
+            await _ingredientTabsRepository.UpdateTab(existingingredientTab);
         }
 
-        public Task<bool> DeleteRecipe(int id)
+        public Task<bool> DeleteTab(int id)
         {
-            return _ingredientTabsRepository.DeleteRecipe(id);
+            return _ingredientTabsRepository.DeleteTab(id);
         }
     }
 }

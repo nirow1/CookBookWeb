@@ -8,12 +8,9 @@ namespace CookbookDataAccess.Persistence
     {
         public IngredientTabsRepository(RecipeContext recipeContext) : base(recipeContext) { }
 
-        public async Task<IEnumerable<IngredientTabs>> GetIngredientTabs()
-        {
-            return await Context.IngredientTabs.ToListAsync();
-        }
+        public async Task<IEnumerable<IngredientTabs>> GetIngredientTabs() => await Context.IngredientTabs.ToListAsync();
 
-        public async Task CreateIngredientTab(IngredientTabs ingredientTab)
+        public async Task CreateTab(IngredientTabs ingredientTab)
         {
             using var transaction = await Context.Database.BeginTransactionAsync();
             await Context.IngredientTabs.AddAsync(ingredientTab);
@@ -21,7 +18,7 @@ namespace CookbookDataAccess.Persistence
             await transaction.CommitAsync();
         }
 
-        public async Task UpdateIngredientTab(IngredientTabs ingredientTab)
+        public async Task UpdateTab(IngredientTabs ingredientTab)
         {
             using var transaction = await Context.Database.BeginTransactionAsync();
             Context.IngredientTabs.Update(ingredientTab);
@@ -29,7 +26,9 @@ namespace CookbookDataAccess.Persistence
             await transaction.CommitAsync();
         }
 
-        public async Task<bool> DeleteRecipe(int id)
+        public Task<IngredientTabs?> GetTabById(int id) => Context.IngredientTabs.FirstOrDefaultAsync(x => x.Id == id);
+
+        public async Task<bool> DeleteTab(int id)
         {
             using var transaction = await Context.Database.BeginTransactionAsync();
             var ingredientTab = Context.Recipes.FirstOrDefault(r => r.Id == id);

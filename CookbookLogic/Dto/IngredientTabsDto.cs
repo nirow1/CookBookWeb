@@ -7,7 +7,7 @@ using CookbookDataAccess.Models;
 
 namespace CookbookLogic.Dto
 {
-    internal class IngredientTabsDto
+    public class IngredientTabsDto
     {
         public IngredientTabsDto() { }
 
