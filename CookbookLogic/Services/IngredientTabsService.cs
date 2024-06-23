@@ -1,12 +1,6 @@
 ﻿using CookbookDataAccess.Models;
 using CookbookDataAccess.Persistence;
 using CookbookLogic.Dto;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CookbookLogic.Services
 {
@@ -22,6 +16,16 @@ namespace CookbookLogic.Services
         public async Task<IEnumerable<IngredientTabsDto>> GetAllTabs()
         {
             return (await _ingredientTabsRepository.GetIngredientTabs()).Select(r => new IngredientTabsDto(r));
+        }
+
+        public async Task<IngredientTabsDto> GetTabById(int id)
+        {
+            var newIngredientTab = await _ingredientTabsRepository.GetTabById(id);
+
+            if (newIngredientTab is null)
+                throw new KeyNotFoundException($"Recipe with id {id} not found");
+
+            return new IngredientTabsDto(newIngredientTab);
         }
 
         public async Task CreateTab(IngredientTabsDto ingredientTab)

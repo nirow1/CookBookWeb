@@ -14,17 +14,18 @@ namespace CookbookUI.Controllers
         {
             _ingredientTabsService = ingredientTabsService;
         }
+
         public async Task<IActionResult> Index()
         {
-            var recipes = await _ingredientTabsService.GetAllTabs();
-            return View(recipes);
+            var ingredients = await _ingredientTabsService.GetAllTabs();
+            return View(ingredients);
         }
 
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
             try
             {
-                var recipe = await _ingredientTabsService.ge(id);
+                var recipe = await _ingredientTabsService.GetTabById(id);
                 return View(recipe);
             }
             catch (KeyNotFoundException ex)
@@ -41,7 +42,7 @@ namespace CookbookUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Category,Source,Score,LastCooked")] IngredientTabsDto ingredientTab)
+        public async Task<IActionResult> Create([Bind("Id,Name,Kcal,Protein,Measurement")] IngredientTabsDto ingredientTab)
         {
             if (ModelState.IsValid)
             {

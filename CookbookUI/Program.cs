@@ -3,6 +3,7 @@ using CookbookDataAccess.DataAccess;
 using CookbookLogic;
 using CookbookLogic.Services;
 using CookbookDataAccess.Persistence;
+using CookbookLogic.Dto;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +15,9 @@ builder.Services.AddDbContext<RecipeContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
 });
 builder.Services.AddTransient<RecipesService>();
+builder.Services.AddTransient<IngredientTabsService>();
 builder.Services.AddScoped<RecipesRepository>();
+builder.Services.AddScoped<IngredientTabsRepository>();
 
 var app = builder.Build();
 

@@ -23,9 +23,5 @@ namespace CookbookDataAccess.Models
         [Required]
         [MaxLength(50)]
         public float Protein { get; set; }
-
-        [ForeignKey(nameof(Ingredients))]
-        public int IngredientId { get; set; }
-        public virtual Ingredients Ingredients { get; set; } = null!;
     }
 }
