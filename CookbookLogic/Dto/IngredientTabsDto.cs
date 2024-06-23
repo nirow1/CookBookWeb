@@ -1,4 +1,5 @@
 ﻿using CookbookDataAccess.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace CookbookLogic.Dto
 {

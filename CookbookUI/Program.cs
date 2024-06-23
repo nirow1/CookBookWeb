@@ -4,6 +4,7 @@ using CookbookLogic;
 using CookbookLogic.Services;
 using CookbookDataAccess.Persistence;
 using CookbookLogic.Dto;
+using System.Globalization;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,10 @@ builder.Services.AddTransient<RecipesService>();
 builder.Services.AddTransient<IngredientTabsService>();
 builder.Services.AddScoped<RecipesRepository>();
 builder.Services.AddScoped<IngredientTabsRepository>();
+
+var cultureInfo = new CultureInfo("en-US");
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
 var app = builder.Build();
 

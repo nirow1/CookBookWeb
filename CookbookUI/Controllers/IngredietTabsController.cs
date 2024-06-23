@@ -17,16 +17,38 @@ namespace CookbookUI.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var ingredients = await _ingredientTabsService.GetAllTabs();
-            return View(ingredients);
+            var tabs = await _ingredientTabsService.GetAllTabs();
+            return View(tabs);
         }
 
-        public async Task<IActionResult> Details(int id)
+        public IActionResult Create() => View();
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,Name,Kcal,Protein,Measurement")] IngredientTabsDto tab)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await _ingredientTabsService.CreateTab(tab);
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(500, ex);
+                }
+            }
+
+            return View(tab);
+        }
+
+        public async Task<IActionResult> Edit(int id)
         {
             try
             {
-                var recipe = await _ingredientTabsService.GetTabById(id);
-                return View(recipe);
+                var tab = await _ingredientTabsService.GetTabById(id);
+                return View(tab);
             }
             catch (KeyNotFoundException ex)
             {
@@ -38,26 +60,30 @@ namespace CookbookUI.Controllers
             }
         }
 
-        public IActionResult Create() => View();
-
+        // POST: Recipes/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Kcal,Protein,Measurement")] IngredientTabsDto ingredientTab)
+        public async Task<IActionResult> Edit([Bind("Id,Name,Kcal,Protein,Measurement")] IngredientTabsDto tab)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    await _ingredientTabsService.CreateTab(ingredientTab);
+                    await _ingredientTabsService.UpdateTab(tab);
                     return RedirectToAction(nameof(Index));
+                }
+                catch (KeyNotFoundException ex)
+                {
+                    return NotFound(ex);
                 }
                 catch (Exception ex)
                 {
                     return StatusCode(500, ex);
                 }
             }
-
-            return View(ingredientTab);
+            return View(tab);
         }
 
     }

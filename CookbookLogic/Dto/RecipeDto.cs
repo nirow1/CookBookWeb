@@ -1,13 +1,11 @@
 ﻿using CookbookDataAccess.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace CookbookLogic.Dto
 {
     public class RecipeDto
     {
-        public RecipeDto()
-        {
-            
-        }
+        public RecipeDto() { }
 
         public RecipeDto(Recipes recipe)
         {
