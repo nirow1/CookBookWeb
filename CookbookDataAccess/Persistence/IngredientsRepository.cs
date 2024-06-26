@@ -4,39 +4,39 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CookbookDataAccess.Persistence
 {
-    public class IngredientsRepository : BaseRepository
+    public class IngredientTabsRepository : BaseRepository
     {
-        public IngredientsRepository(RecipeContext recipeContext) : base(recipeContext) { }
+        public IngredientTabsRepository(RecipeContext recipeContext) : base(recipeContext) { }
 
-        public async Task<IEnumerable<Ingredients>> Getingredients() => await Context.Ingredients.ToListAsync();
+        public async Task<IEnumerable<IngredientTabs>> GetIngredientTabs() => await Context.IngredientTabs.ToListAsync();
 
-        public async Task CreateIngredient(Ingredients Ingredient)
+        public async Task CreateTab(IngredientTabs ingredientTab)
         {
             using var transaction = await Context.Database.BeginTransactionAsync();
-            await Context.Ingredients.AddAsync(Ingredient);
+            await Context.IngredientTabs.AddAsync(ingredientTab);
             await Context.SaveChangesAsync();
             await transaction.CommitAsync();
         }
 
-        public async Task UpdateIngredient(Ingredients Ingredient)
+        public async Task UpdateTab(IngredientTabs ingredientTab)
         {
             using var transaction = await Context.Database.BeginTransactionAsync();
-            Context.Ingredients.Update(Ingredient);
+            Context.IngredientTabs.Update(ingredientTab);
             await Context.SaveChangesAsync();
             await transaction.CommitAsync();
         }
 
-        public Task<Ingredients?> GetIngredientById(int id) => Context.Ingredients.FirstOrDefaultAsync(x => x.Id == id);
+        public Task<IngredientTabs?> GetTabById(int id) => Context.IngredientTabs.FirstOrDefaultAsync(x => x.Id == id);
 
-        public async Task<bool> DeleteIngredient(int id)
+        public async Task<bool> DeleteTab(int id)
         {
             using var transaction = await Context.Database.BeginTransactionAsync();
-            var Ingredient = Context.Ingredients.FirstOrDefault(r => r.Id == id);
+            var ingredientTab = Context.Recipes.FirstOrDefault(r => r.Id == id);
 
-            if (Ingredient is null)
+            if (ingredientTab is null)
                 return false;
 
-            Context.Ingredients.Remove(Ingredient);
+            Context.Recipes.Remove(ingredientTab);
             await Context.SaveChangesAsync();
             await transaction.CommitAsync();
             return true;

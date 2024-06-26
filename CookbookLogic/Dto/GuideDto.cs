@@ -9,11 +9,14 @@ using System.Threading.Tasks;
 
 namespace CookbookLogic.Dto
 {
-    public class GuidesDto
+    public class GuideDto
     {
-        public GuidesDto() { }
+        public GuideDto()
+        {
+              
+        }
 
-        public GuidesDto(Guides guides)
+        public GuideDto(Guides guides)
         {
             Id = guides.Id;
             RecipeId = guides.RecipeId;
@@ -33,6 +36,5 @@ namespace CookbookLogic.Dto
         public float TotalCalories { get; set; }
         public float TotalProtein { get; set; }
         public float TotalGrams { get; set; }
-        public ICollection<Ingredients> Ingredients { get; set; }
     }
 }

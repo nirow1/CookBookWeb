@@ -42,19 +42,9 @@
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
-        <div id="childForm">
-            @Html.Partial("~/CookbookUI/Views/Recipes/addGuide.cshtml")
-        </div>
-
-        <button type="button" onclick="showChildForm()" class="btn btn-primary">Add Child</button>
     </div>
 </div>
 
-<script>
-    function showChildForm() {
-        document.getElementById("childForm").style.display = "block";
-    }
-</script>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>

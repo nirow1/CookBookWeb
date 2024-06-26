@@ -15,7 +15,7 @@ namespace CookbookLogic.Services
 
         public async Task<IEnumerable<IngredientTabsDto>> GetAllTabs()
         {
-            return (await _ingredientTabsRepository.GetTabs()).Select(r => new IngredientTabsDto(r));
+            return (await _ingredientTabsRepository.GetIngredientTabs()).Select(r => new IngredientTabsDto(r));
         }
 
         public async Task<IngredientTabsDto> GetTabById(int id)
@@ -44,15 +44,15 @@ namespace CookbookLogic.Services
 
         public async Task UpdateTab(IngredientTabsDto ingredientTab)
         {
-            var existingIngredientTab = await _ingredientTabsRepository.GetTabById(ingredientTab.Id) ?? throw new KeyNotFoundException("Recipe not found");
+            var existingingredientTab = await _ingredientTabsRepository.GetTabById(ingredientTab.Id) ?? throw new KeyNotFoundException("Recipe not found");
 
-            existingIngredientTab.Name = ingredientTab.Name;
-            existingIngredientTab.Measurement = ingredientTab.Measurement;
-            existingIngredientTab.Kcal = ingredientTab.Kcal;
-            existingIngredientTab.Protein = ingredientTab.Protein;
-            existingIngredientTab.Id = ingredientTab.Id;
+            existingingredientTab.Name = ingredientTab.Name;
+            existingingredientTab.Measurement = ingredientTab.Measurement;
+            existingingredientTab.Kcal = ingredientTab.Kcal;
+            existingingredientTab.Protein = ingredientTab.Protein;
+            existingingredientTab.Id = ingredientTab.Id;
 
-            await _ingredientTabsRepository.UpdateTab(existingIngredientTab);
+            await _ingredientTabsRepository.UpdateTab(existingingredientTab);
         }
 
         public Task<bool> DeleteTab(int id)

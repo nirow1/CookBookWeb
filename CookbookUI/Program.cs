@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using CookbookDataAccess.DataAccess;
+using CookbookLogic;
 using CookbookLogic.Services;
 using CookbookDataAccess.Persistence;
+using CookbookLogic.Dto;
 using System.Globalization;
 
 
@@ -14,15 +16,8 @@ builder.Services.AddDbContext<RecipeContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
 });
 builder.Services.AddTransient<RecipesService>();
-builder.Services.AddScoped<RecipesRepository>();
-
-builder.Services.AddTransient<GuidesService>();
-builder.Services.AddScoped<GuidesRepository>();
-
-builder.Services.AddTransient<IngredientsService>();
-builder.Services.AddScoped<IngredientsRepository>();
-
 builder.Services.AddTransient<IngredientTabsService>();
+builder.Services.AddScoped<RecipesRepository>();
 builder.Services.AddScoped<IngredientTabsRepository>();
 
 var cultureInfo = new CultureInfo("en-US");

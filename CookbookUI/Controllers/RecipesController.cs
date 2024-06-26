@@ -7,12 +7,10 @@ namespace CookbookUI.Controllers
     public class RecipesController : Controller
     {
         private readonly RecipesService _recipesService;
-        private readonly GuidesService _guideService;
 
-        public RecipesController(RecipesService recipesService, GuidesService guideService)
+        public RecipesController(RecipesService recipesService)
         {
             _recipesService = recipesService;
-            _guideService = guideService;
         }
 
         // GET: Recipes
@@ -51,15 +49,13 @@ namespace CookbookUI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Category,Source,Score,LastCooked")] RecipeDto recipes,
-            [Bind("Id,RecipeId,Type,Score,WritenGuide,TotalCalories,TotalProtein,TotalGrams")] GuidesDto guide)
+        public async Task<IActionResult> Create([Bind("Id,Name,Category,Source,Score,LastCooked")] RecipeDto recipes)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
                     await _recipesService.CreateRecipe(recipes);
-                    await _guideService.CreateGuide(guide);
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
