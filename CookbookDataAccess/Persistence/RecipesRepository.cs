@@ -1,11 +1,6 @@
 ﻿using CookbookDataAccess.DataAccess;
 using CookbookDataAccess.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CookbookDataAccess.Persistence
 {
@@ -19,7 +14,7 @@ namespace CookbookDataAccess.Persistence
         /// Fetches all recipes
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<Recipes>> GetAllRecipes()
+        public async Task<IEnumerable<Recipe>> GetAllRecipes()
         {
             return await Context.Recipes.ToListAsync();
         }
@@ -29,7 +24,7 @@ namespace CookbookDataAccess.Persistence
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Task<Recipes?> GetRecipeById(int id)
+        public Task<Recipe?> GetRecipeById(int id)
         {
             return Context.Recipes.Include(r => r.Guides).FirstOrDefaultAsync(r => r.Id == id);
         }
@@ -39,7 +34,7 @@ namespace CookbookDataAccess.Persistence
         /// </summary>
         /// <param name="recipe"></param>
         /// <returns></returns>
-        public async Task CreateRecipe(Recipes recipe)
+        public async Task CreateRecipe(Recipe recipe)
         {
             using var transaction = await Context.Database.BeginTransactionAsync();
             await Context.Recipes.AddAsync(recipe);
@@ -52,7 +47,7 @@ namespace CookbookDataAccess.Persistence
         /// </summary>
         /// <param name="recipe"></param>
         /// <returns></returns>
-        public async Task UpdateRecipe(Recipes recipe)
+        public async Task UpdateRecipe(Recipe recipe)
         {
             using var transaction = await Context.Database.BeginTransactionAsync();
             Context.Recipes.Update(recipe);
