@@ -1,7 +1,6 @@
 ﻿using CookbookLogic.Dto;
 using Microsoft.AspNetCore.Mvc;
 using CookbookLogic.Services;
-using Microsoft.EntityFrameworkCore;
 
 namespace CookbookUI.Controllers
 {

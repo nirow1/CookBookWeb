@@ -15,7 +15,7 @@ namespace CookbookLogic.Dto
             Source = recipe.Source;
             Score = recipe.Score;
             LastCooked = recipe.LastCooked;
-            Guides = recipe.Guides.Select(g => new GuideDto(g)).ToList();
+            Guides = recipe.Guides.Select(g => new GuidesDto(g)).ToList();
         }
 
         public int Id { get; set; }
@@ -24,6 +24,6 @@ namespace CookbookLogic.Dto
         public string? Source { get; set; }
         public float Score { get; set; }
         public DateTime LastCooked { get; set; }
-        public List<GuideDto> Guides { get; set; } = new List<GuideDto>();
+        public List<GuidesDto> Guides { get; set; } = new List<GuidesDto>();
     }
 }

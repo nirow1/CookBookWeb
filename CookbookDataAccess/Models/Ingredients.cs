@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CookbookDataAccess.Models
 {
@@ -22,8 +20,6 @@ namespace CookbookDataAccess.Models
         [MaxLength(50)]
         public float Protein { get; set; }
 
-        public IngredientTabs? IngredientTabs { get; set; }
-
-        public ICollection<Guides> Guides { get; set; } = new List<Guides>();
+        public IngredientTabs? IngredientTabsId { get; set; }
     }
 }
