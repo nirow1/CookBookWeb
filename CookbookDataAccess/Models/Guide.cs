@@ -3,14 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CookbookDataAccess.Models
 {
-    public class Guides
+    public class Guide
     {
         [Required]
         [MaxLength(50)]
         public int Id { get; set; }
-
-        [ForeignKey(nameof(Recipes))]
-        public int RecipeId { get; set; }
 
         [MaxLength(50)]
         public string? Type { get; set; }
@@ -31,8 +28,11 @@ namespace CookbookDataAccess.Models
         [MaxLength(50)]
         public float TotalGrams { get; set; }
 
+        [ForeignKey(nameof(Recipes))]
+        public int RecipeId { get; set; }
+
         public virtual Recipes Recipes { get; set; } = null!;
 
-        public ICollection<Ingredients> Ingredients { get; set; } = new List<Ingredients>();
+        public ICollection<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
     }
 }

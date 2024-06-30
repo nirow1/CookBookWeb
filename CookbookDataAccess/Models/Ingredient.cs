@@ -1,16 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CookbookDataAccess.Models
 {
-    public class Ingredients
+    public class Ingredient
     {
         public int Id { get; set; }
 
         [Required]
         [MaxLength(50)]
-        public string? Name { get; set; }
+        public string Name { get; set; } = null!;
 
         [Required]
         [MaxLength(50)]
@@ -22,8 +23,14 @@ namespace CookbookDataAccess.Models
         [MaxLength(50)]
         public float Protein { get; set; }
 
-        public IngredientTabs? IngredientTabs { get; set; }
+        [ForeignKey(nameof(Models.Guide))]
+        public int GuidesId { get; set; }
 
-        public ICollection<Guides> Guides { get; set; } = new List<Guides>();
+        public virtual Guide Guide { get; set; } = null!;
+
+        [ForeignKey(nameof(Models.IngredientTabs))]
+        public int IngredientTabId { get; set; }
+
+        public virtual IngredientTabs IngredientTab { get; set; } = null!;
     }
 }

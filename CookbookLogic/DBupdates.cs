@@ -37,7 +37,7 @@ namespace CookbookLogic
             }
         }
 
-        private static void UpdateNutritionalValues(RecipeContext context, Guides guide)
+        private static void UpdateNutritionalValues(RecipeContext context, Guide guide)
         {
             float totalGrams = 0;
             float totalProtein = 0;
@@ -63,7 +63,7 @@ namespace CookbookLogic
             }
         }
 
-        private static void UpdateIngredientNutritionalValues(RecipeContext context, Ingredients ingredient)
+        private static void UpdateIngredientNutritionalValues(RecipeContext context, Ingredient ingredient)
         {
             var ingredientTab = context.IngredientTabs.SingleOrDefault(i => i.Name == ingredient.Name);
             if (ingredientTab != null)

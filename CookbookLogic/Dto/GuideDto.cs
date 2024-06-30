@@ -16,7 +16,7 @@ namespace CookbookLogic.Dto
               
         }
 
-        public GuideDto(Guides guides)
+        public GuideDto(Guide guides)
         {
             Id = guides.Id;
             RecipeId = guides.RecipeId;
