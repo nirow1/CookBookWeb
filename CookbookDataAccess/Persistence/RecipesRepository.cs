@@ -16,7 +16,7 @@ namespace CookbookDataAccess.Persistence
         /// <returns></returns>
         public async Task<IEnumerable<Recipe>> GetAllRecipes()
         {
-            return await Context.Recipes.ToListAsync();
+            return await Context.Recipe.ToListAsync();
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace CookbookDataAccess.Persistence
         /// <returns></returns>
         public Task<Recipe?> GetRecipeById(int id)
         {
-            return Context.Recipes.Include(r => r.Guides).FirstOrDefaultAsync(r => r.Id == id);
+            return Context.Recipe.Include(r => r.Guides).FirstOrDefaultAsync(r => r.Id == id);
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace CookbookDataAccess.Persistence
         public async Task CreateRecipe(Recipe recipe)
         {
             using var transaction = await Context.Database.BeginTransactionAsync();
-            await Context.Recipes.AddAsync(recipe);
+            await Context.Recipe.AddAsync(recipe);
             await Context.SaveChangesAsync();
             await transaction.CommitAsync();
         }
@@ -50,7 +50,7 @@ namespace CookbookDataAccess.Persistence
         public async Task UpdateRecipe(Recipe recipe)
         {
             using var transaction = await Context.Database.BeginTransactionAsync();
-            Context.Recipes.Update(recipe);
+            Context.Recipe.Update(recipe);
             await Context.SaveChangesAsync();
             await transaction.CommitAsync();
         }
@@ -63,12 +63,12 @@ namespace CookbookDataAccess.Persistence
         public async Task<bool> DeleteRecipe(int id)
         {
             using var transaction = await Context.Database.BeginTransactionAsync();
-            var recipe = Context.Recipes.FirstOrDefault(r => r.Id == id);
+            var recipe = Context.Recipe.FirstOrDefault(r => r.Id == id);
 
             if (recipe is null)
                 return false;
 
-            Context.Recipes.Remove(recipe);
+            Context.Recipe.Remove(recipe);
             await Context.SaveChangesAsync();
             await transaction.CommitAsync();
             return true;

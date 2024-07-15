@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CookbookDataAccess.Models
 {
-    public class Recipes
+    public class Recipe
     {
         [Required]
         [MaxLength(50)]

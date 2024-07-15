@@ -31,7 +31,7 @@ namespace CookbookDataAccess.Models
         [ForeignKey(nameof(Recipes))]
         public int RecipeId { get; set; }
 
-        public virtual Recipes Recipes { get; set; } = null!;
+        public virtual Recipe Recipes { get; set; } = null!;
 
         public ICollection<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
     }

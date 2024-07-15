@@ -12,9 +12,9 @@ namespace CookbookDataAccess.DataAccess
     {
         public RecipeContext(DbContextOptions options) : base(options) { }
         public RecipeContext() { }
-        public DbSet<Recipes> Recipes { get; set; }
+        public DbSet<Recipe> Recipe { get; set; }
         public DbSet<Guide> Guides { get; set; }
-        public DbSet<IngredientTabs> IngredientTabs { get; set; }
+        public DbSet<IngredientTab> IngredientTab { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

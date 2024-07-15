@@ -51,7 +51,7 @@ namespace CookbookLogic.Services
         /// <exception cref="KeyNotFoundException"></exception>
         public async Task CreateRecipe(RecipeDto recipe)
         {
-            var newRecipe = new Recipes
+            var newRecipe = new Recipe
             {
                 Name = recipe.Name,
                 Category = recipe.Category,

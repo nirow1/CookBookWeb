@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace CookbookDataAccess.Models
 {
-    public class IngredientTabs
+    public class IngredientTab
     {
         public int Id { get; set; }
 
