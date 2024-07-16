@@ -15,15 +15,15 @@ namespace CookbookDataAccess.Models
 
         [Required]
         [MaxLength(50)]
-        public string? Name { get; set; }
+        public string Name { get; set; } = null!;
 
         [Required]
         [MaxLength(50)]
-        public string? Category { get; set; }
+        public string Category { get; set; } = null!;
 
         [Required]
         [MaxLength(150)]
-        public string? Source { get; set; }
+        public string Source { get; set; } = null!;
 
         [Required]
         [MaxLength(20)]
