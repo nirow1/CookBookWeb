@@ -19,9 +19,9 @@ namespace CookbookLogic.Dto
         }
 
         public int Id { get; set; }
-        public string? Name { get; set; }
-        public string? Category { get; set; }
-        public string? Source { get; set; }
+        public string Name { get; set; } = null!;
+        public string Category { get; set; } = null!;
+        public string Source { get; set; } = null!;
         public float Score { get; set; }
         public DateTime LastCooked { get; set; }
         public List<GuideDto> Guides { get; set; } = new List<GuideDto>();

@@ -7,7 +7,7 @@ namespace CookbookLogic.Dto
     {
         public IngredientTabsDto() { }
 
-        public IngredientTabsDto(IngredientTabs ingredientTabs)
+        public IngredientTabsDto(IngredientTab ingredientTabs)
         {
             Id = ingredientTabs.Id;
             Name = ingredientTabs.Name;
