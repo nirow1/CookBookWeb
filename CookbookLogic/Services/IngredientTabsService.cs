@@ -15,7 +15,7 @@ namespace CookbookLogic.Services
 
         public async Task<IEnumerable<IngredientTabsDto>> GetAllTabs()
         {
-            return (await _ingredientTabsRepository.GetIngredientTabs()).Select(r => new IngredientTabsDto(r));
+            return (await _ingredientTabsRepository.GetTabs()).Select(r => new IngredientTabsDto(r));
         }
 
         public async Task<IngredientTabsDto> GetTabById(int id)
@@ -30,7 +30,7 @@ namespace CookbookLogic.Services
 
         public async Task CreateTab(IngredientTabsDto ingredientTab)
         {
-            var newIngredientTab = new IngredientTabs
+            var newIngredientTab = new IngredientTab
             {
                 Name = ingredientTab.Name,
                 Measurement = ingredientTab.Measurement,
