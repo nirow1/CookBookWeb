@@ -13,7 +13,7 @@ namespace CookbookLogic.Services
             _ingredientsRepository = ingredientsRepository;
         }
 
-        public async Task<IEnumerable<IngredientDto>> GetAllTabs() => (await _ingredientsRepository.Getingredients()).Select(r => new IngredientDto(r));
+        public async Task<IEnumerable<IngredientDto>> GetAllIngredients() => (await _ingredientsRepository.Getingredients()).Select(r => new IngredientDto(r));
 
         public async Task<IngredientDto> GetIngredientById(int id)
         {
@@ -25,7 +25,7 @@ namespace CookbookLogic.Services
             return new IngredientDto(newIngredient);
         }
 
-        public async Task CreateTab(IngredientDto ingredient)
+        public async Task CreateIngredient(IngredientDto ingredient)
         {
             var newIngredient = new Ingredient
             {
@@ -39,7 +39,7 @@ namespace CookbookLogic.Services
             await _ingredientsRepository.CreateIngredient(newIngredient);
         }
 
-        public async Task UpdateTab(IngredientDto ingredient)
+        public async Task UpdateIngredient(IngredientDto ingredient)
         {
             var existingIngredient = await _ingredientsRepository.GetIngredientById(ingredient.Id) ?? throw new KeyNotFoundException("Recipe not found");
 
@@ -52,7 +52,7 @@ namespace CookbookLogic.Services
             await _ingredientsRepository.UpdateIngredient(existingIngredient);
         }
 
-        public Task<bool> DeleteTab(int id) => _ingredientsRepository.DeleteIngredient(id);
+        public Task<bool> DeleteIngredient(int id) => _ingredientsRepository.DeleteIngredient(id);
         
     }
 }
