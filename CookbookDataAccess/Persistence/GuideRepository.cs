@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CookbookDataAccess.Persistence
 {
-    public class GuidesRepository : BaseRepository
+    public class GuideRepository : BaseRepository
     {
-        public GuidesRepository(RecipeContext recipeContext) : base(recipeContext) { }
+        public GuideRepository(RecipeContext recipeContext) : base(recipeContext) { }
 
         public async Task<IEnumerable<Guide>> GetGuides() => await Context.Guides.ToListAsync();
 
