@@ -33,5 +33,6 @@ namespace CookbookLogic.Dto
         public float TotalCalories { get; set; }
         public float TotalProtein { get; set; }
         public float TotalGrams { get; set; }
+        public ICollection<Ingredient> Ingredients { get; set; } = [];
     }
 }
