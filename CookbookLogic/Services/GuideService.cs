@@ -42,6 +42,22 @@ namespace CookbookLogic.Services
             };
             await _guideRepository.CreateGuide(newGuide);
         }
+
+        public async Task UpdateGuide(GuideDto guide)
+        {
+            var existingGuide = await _guideRepository.GetGuideById(guide.Id) ?? throw new KeyNotFoundException($"Recipe not found");
+
+            existingGuide.Id = guide.Id;
+            existingGuide.RecipeId = guide.RecipeId;
+            existingGuide.Type = guide.Type;
+            existingGuide.Score = guide.Score;
+            existingGuide.WritenGuide = guide.WritenGuide;
+            existingGuide.Ingredients = guide.Ingredients;
+
+            await _guideRepository.UpdateGuide(existingGuide);
+        }
+
+        public Task<bool> DeleteGuide(int id ) => _guideRepository.DeleteGuide(id);
     
     }
 }
