@@ -11,10 +11,7 @@ namespace CookbookLogic.Dto
 {
     public class GuideDto
     {
-        public GuideDto()
-        {
-              
-        }
+        public GuideDto() { }
 
         public GuideDto(Guide guides)
         {

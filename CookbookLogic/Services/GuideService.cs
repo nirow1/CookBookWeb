@@ -18,5 +18,15 @@ namespace CookbookLogic.Services
         }
 
         public async Task<IEnumerable<GuideDto>>GetGuides() =>(await _guideRepository.GetGuides()).Select(r=> new GuideDto(r));
+        
+        public async Task<GuideDto> GetGuideById(int id)
+        {
+            var newGuide = await _guideRepository.GetGuideById(id);
+            if (newGuide == null)
+                throw new KeyNotFoundException($"recipe with id {id} not found")
+
+            return new GuideDto(newGuide);
+        }
+    
     }
 }
